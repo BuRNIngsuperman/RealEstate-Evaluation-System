@@ -1,0 +1,41 @@
+{% extends "myapplication/base.html" %}
+
+{% block header %}
+    <h2>输入查询选项：</h2>
+{% endblock %}
+
+{% block content %}
+     <style type="text/css">
+    .formpost {
+        width: 500px;
+        clear: both;
+        margin: auto;
+    }
+    .formpost input {
+        width: 100%;
+        clear: both;
+    }
+
+    </style>
+     <div class="formpost">
+          <form action="{% url 'myapplication:textpost' %}" method="post">
+              {% csrf_token %}
+              面积:<input type="number" name="acreage">
+              所在楼层：<input type="number" name="floor">
+              朝向:<input type="text" name="shore">
+              房屋类型：<input type="text" name="house_type">
+              装修程度;<input type="text" name="fitment">
+              竣工年份：<input type="number" name="time1">
+              地址：<input type="text" name="address">
+                <button type="submit" class="btn btn-success " id="main" onclick="display()">submit</button>
+          </form>
+     <p>评估结果：{{ b }}元/平方</p>
+     </div>
+<script>
+function display() {
+    var x="正在处理中...";
+    document.getElementById("main").innerHTML=x;
+
+}
+</script>
+ {% endblock %}

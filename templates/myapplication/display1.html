@@ -1,0 +1,84 @@
+{% extends "myapplication/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <div class="container">
+
+      <div class="text-center starter-template">
+        <h2>房天下房产挂牌信息展示</h2>
+      </div>
+
+    </div>
+<form class="form-inline" action="{% url 'myapplication:display1search' %}" method="get">
+  <div class="form-group">
+    <label for="name">区域</label>
+    <input type="text" name="page" class="form-control" id="name" placeholder="请输入区域名称">
+  </div>
+    <button type="submit" class="btn btn-success">提交</button>
+</form>
+{% endblock header %}
+
+
+{% block content %}
+<!--表格显示-->
+<div class ="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>区域</th> <th>小区名称</th> <th>朝向</th> <th>楼层</th> <th>房间类型</th>
+            <th>装修情况</th><th>总价(万元)</th><th>面积(平方)</th><th>均价(元/平方)</th><th>竣工时间</th><th>交通情况</th><th>种类</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            {% for inf in hour %}
+                <tr>
+                <td>{{ inf.address_area }}</td>
+                <td>{{ inf.address_name }}</td>
+                <td>{{ inf.direction }}</td>
+                <td>{{ inf.floor }}</td>
+                <td>{{ inf.house_type }}</td>
+                <td>{{ inf.decoration }}</td>
+                <td>{{ inf.total_price }}</td>
+                <td>{{ inf.area }}</td>
+                <td>{{ inf.unit_price }}</td>
+                <td>{{ inf.complete_year }}</td>
+                <td>{{ inf.adress_subway }}</td>
+                <td>{{ inf.category }}</td>
+
+
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+ <!--分页-->
+
+<nav aria-label="Page navigation">
+<ul class="pagination">
+    {% if hour.has_previous %}
+        <li>
+        <a href="?page={{ hour.previous_page_number }}"aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+        </li>
+    {% endif %}
+    {% load pagetag %}
+
+    {% for pg in hour.paginator.page_range %}
+        {% circle_page hour.number pg %}
+    {% endfor %}
+
+    {% if hour.has_next %}
+        <li>
+        <a href="?page={{ hour.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+        </li>
+    {% endif %}
+
+
+</ul>
+</nav>
+{% endblock content %}

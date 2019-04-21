@@ -1,0 +1,30 @@
+{% extends "myapplication/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+<h2>模型训练页面</h2>
+{% endblock header %}
+
+{% block content %}
+
+<div class="btn-group">
+
+<form action="{% url 'myapplication:progress' %}" method="post" >
+        {% csrf_token %}
+    <div class="form-group">
+		<label for="inputfile">文件输入</label>
+		<input type="file" id="inputfile">
+		<p class="help-block">输入房产挂牌交易相关信息文件进行训练</p>
+        <p>开始模型训练 <button type="submit" class="btn btn-success" name="submit" onclick="display()">训练</button></p>
+	</div>
+</form>
+<p id="demo"></p>
+</div>
+<script>
+function display() {
+    var x="正在进行模型训练...";
+    document.getElementById("demo").innerHTML=x;
+
+}
+</script>
+{% endblock %}

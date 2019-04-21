@@ -1,0 +1,44 @@
+{% extends "myapplication/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <div class="text-center start-template">
+
+    <h2>爬取数据页面</h2>
+    </div>
+    <div>
+<form class="form-inline" action="{% url 'myapplication:reptileshow' %}" method="post">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="name">爬取房产数据：</label>
+    <input type="number" name="pagenum" class="form-control" id="name" placeholder="请输入爬取页数">
+  </div>
+    <button type="submit" class="btn btn-success" onclick="display()">开始爬取</button>
+</form>
+    </div>
+    <p id="demo"></p>
+    <script>
+    function display() {
+        var x="正在爬取二手房挂牌数据...";
+        document.getElementById("demo").innerHTML=x;
+    }
+    </script>
+{% endblock header %}
+
+{% block content %}
+<!--表格显示-->
+<div class ="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>区域</th> <th>小区名称</th> <th>总价(万元)</th> <th>单价</th> <th>房间类型</th><th>面积</th>
+            <th>装修情况</th><th>朝向</th><th>房屋情况</th><th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

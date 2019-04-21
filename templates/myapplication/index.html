@@ -1,0 +1,14 @@
+{% extends "myapplication/base.html" %}
+
+{% block header %}
+  <div class='jumbotron'>
+      <h2>房产综合估价系统</h2>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <h2>
+    <a href="{% url 'myusers:register' %}">注册账号</a> 来创建登录账号，并登陆和管理自己的信息与查询
+  </h2>
+
+{% endblock %}
