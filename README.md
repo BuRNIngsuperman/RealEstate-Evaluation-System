@@ -1,1 +1,2 @@
 # djangotest
+这是我用Django和Python设计的房产估价系统，利用了线性回归模型对上海市的房价进行了预测
